@@ -1,0 +1,42 @@
+# Ignore everything
+*
+
+# Keep this file
+!.gitignore
+
+# Keep selected project folders
+!Application 1/
+!Application 1/**
+
+!Default_Application/
+!Default_Application/**
+
+!STM32Bootloader/
+!STM32Bootloader/**
+
+!Documents/
+!Documents/**
+
+# Keep host script
+!host_py.py
+
+# Ignore STM32 build folders inside tracked projects
+**/Debug/
+**/Release/
+
+# Ignore STM32CubeIDE settings
+**/.settings/
+
+# Ignore build artifacts
+*.o
+*.d
+*.su
+*.map
+*.elf
+*.bin
+*.hex
+*.list
+
+# Ignore OS files
+.DS_Store
+Thumbs.db
