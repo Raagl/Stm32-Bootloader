@@ -48,7 +48,7 @@ The Python host utility (`host_py.py`) provides a command-line interface for com
 
 ## Flashing a User Application
 
-▶️ [Flashing Demo](Documents/Demo/Flash_program_demo.gif)
+![Flashing Demo](Documents/Demo/Flash_program_demo.gif)
 To program and run a new firmware image:
 
 1. Build your application project.
