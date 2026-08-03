@@ -17,7 +17,7 @@ To enter the bootloader:
 
 The bootloader indicates it is active by turning **ON the onboard LED** and starts listening for UART commands from the host application.
 
-![Bootloader Mode](<WhatsApp Image 2026-08-03 at 12.43.24.jpeg>)
+![Bootloader Mode](Documents/Demo/Bootloader_mode.jpeg)
 
 If the **User Button is not pressed** during reset, the bootloader validates the user application and automatically jumps to the **Default Application**.
 
@@ -26,7 +26,7 @@ If the **User Button is not pressed** during reset, the bootloader validates the
 
 The Python host utility (`host_py.py`) provides a command-line interface for communicating with the bootloader over UART.
 
-![Python Host Application](image.png)
+![Python Host Application](Documents/Demo/host_py.png)
 
 ## Bootloader Commands
 
@@ -48,9 +48,7 @@ The Python host utility (`host_py.py`) provides a command-line interface for com
 
 ## Flashing a User Application
 
-<video controls src="20260803-0756-43.1234396.mp4" title="Title"></video>
-
-
+▶️ [Flashing Demo](Documents/Demo/Flash_program_demo.gif)
 To program and run a new firmware image:
 
 1. Build your application project.
@@ -112,55 +110,3 @@ STM32-Bootloader
 ```
 
 ---
-
-# Project Demonstration
-
-## Bootloader Architecture
-
-> *(Add architecture diagram here)*
-
-```markdown
-![Architecture](Documents/architecture.png)
-```
-
----
-
-## UART Communication Protocol
-
-> *(Add packet format image here)*
-
-```markdown
-![Protocol](Documents/packet_protocol.png)
-```
-
----
-
-## Flash Memory Layout
-
-> *(Add flash memory layout image here)*
-
-```markdown
-![Memory Map](Documents/memory_map.png)
-```
-
----
-
-## Bootloader Host Application
-
-> *(Add terminal screenshot here)*
-
-```markdown
-![Host](Documents/host_terminal.png)
-```
-
-
----
-
-# Future Improvements
-
-- Secure Boot
-- AES Encrypted Firmware Updates
-- CAN Bootloader
-- USB DFU Bootloader
-- OTA Firmware Updates
-- Dual-Image Bootloader
