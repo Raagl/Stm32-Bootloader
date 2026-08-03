@@ -4,6 +4,19 @@ A custom UART bootloader for the **STM32F411RE**. The project enables reliable i
 
 ---
 
+## Table of Contents
+
+- [Getting Started](#getting-started)
+- [Using the Host Application](#using-the-host-application)
+- [Bootloader Commands](#bootloader-commands)
+- [Flash Programming](#flash-programming)
+- [Flash Erase](#flash-erase)
+- [Flash Protection](#flash-protection)
+- [Memory Layout](#memory-layout)
+- [Project Structure](#project-structure)
+
+---
+
 # Getting Started
 
 ## Bootloader Mode
@@ -43,41 +56,128 @@ The Python host utility (`host_py.py`) provides a command-line interface for com
 | BL_READ_SECTOR_STATUS | Read sector protection status |
 | BL_DIS_R_W_PROTECT | Disable protection |
 
+> **UART Configuration**
+>
+> - Baud Rate: **115200**
+> - Data Bits: **8**
+> - Stop Bits: **1**
+> - Parity: **None**
 
 ---
 
-## Flashing a User Application
+# Flash Programming
 
-![Flashing Demo](Documents/Demo/Flash_program_demo.gif)
-To program and run a new firmware image:
+**Commands:** `BL_MEM_WRITE` → `BL_GO_TO_ADDR`
 
-1. Build your application project.
-2. Copy the generated **`.bin`** file into the same directory as `host_py.py`.
+### Steps
+
+1. Build the user application.
+2. Copy the generated **`.bin`** file beside `host_py.py`.
 3. Rename the binary to:
 
 ```text
 user_app.bin
 ```
 
-4. Enter **Bootloader Mode** by holding the **User Button** while pressing **Reset**.
-5. Run the Python host application.
- 
+4. Enter **Bootloader Mode**.
+5. Run the Python host application:
+
 ```bash
 python host_py.py
 ```
 
-6. Select **BL_MEM_WRITE** from the menu.
-7. Enter the application start address (default: `0x08008000`).
-8. The host transfers the firmware image over UART while the bootloader programs it into the internal Flash memory.
-9. After the programming is complete, select **BL_GO_TO_ADDR** from the menu.
-10. Enter the application start address (`0x08008000` by default).
-11. The bootloader validates the application, updates the Main Stack Pointer (MSP), deinitializes the bootloader peripherals, and transfers execution to the user application.
+6. Select **BL_MEM_WRITE**.
+7. Enter the application start address (`0x08008000` by default).
+8. Wait until the bootloader finishes programming the application into Flash.
+9. Select **BL_GO_TO_ADDR**.
+10. Enter the same application start address (`0x08008000`).
+11. The bootloader validates the application, deinitializes its peripherals, updates the Main Stack Pointer (MSP), and transfers execution to the user application.
 
-> **Note:** Ensure that the application is linked to the same start address (e.g., `0x08008000`) specified during programming and execution. An incorrect address or linker configuration will prevent the application from starting correctly.
+> **Note:** Ensure that the application is linked to the same Flash start address used during programming. If the linker address and programming address do not match, the application will not execute correctly.
+
+### Demo
+
+**Flash Programming**
+
+![Flash Programming](Documents/Demo/flash_program.gif)
+
+---
+
+# Flash Erase
+
+The bootloader supports both **Sector Erase** and **Mass Erase** operations.
+
+---
+
+## Sector Erase
+
+**Command:** `BL_FLASH_ERASE`
+
+**Steps**
+
+1. Enter Bootloader Mode.
+2. Select **BL_FLASH_ERASE**.
+3. Enter the starting sector number.
+4. Enter the number of sectors to erase.
+5. Wait for the erase operation to complete.
+
+**Demo**
+
+![Sector Erase](Documents/Demo/sector_erase.gif)
+
+---
+
+## Mass Erase
+
+**Command:** `BL_FLASH_MASS_ERASE`
+
+**Steps**
+
+1. Enter Bootloader Mode.
+2. Select **BL_FLASH_MASS_ERASE**.
+3. Confirm the operation.
+4. Wait for the erase to complete.
+
+> **Warning:** Mass erase removes all user applications stored in Flash.
+
+**Demo**
+
+![Mass Erase](Documents/Demo/mass_erase.gif)
+
+
+
+## Status Codes
+
+| Status | Description |
+|---------|-------------|
+| `FLASH_OK` | Erase completed successfully |
+| `FLASH_FAIL` | Erase failed |
+| `FLASH_INVALID_SECTOR` | Invalid sector number |
+
+---
+
+# Flash Protection
+
+The bootloader supports enabling and disabling STM32 Flash protection using the Option Bytes.
+
+## Supported Commands
+
+- `BL_EN_R_W_PROTECT`
+- `BL_READ_SECTOR_STATUS`
+- `BL_DIS_R_W_PROTECT`
+
+### Features
+
+- Enable Write Protection (WRP)
+- Enable Proprietary Code Read-Out Protection (PCROP)
+- Read sector protection status
+- Disable protection
 
 ---
 
 # Memory Layout
+
+![Memory Layout](Documents/Demo/Memory.png)
 
 | Region | Start Address |
 |---------|---------------|
