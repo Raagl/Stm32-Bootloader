@@ -63,7 +63,7 @@ user_app.bin
 
 4. Enter **Bootloader Mode** by holding the **User Button** while pressing **Reset**.
 5. Run the Python host application.
-
+ 
 ```bash
 python host_py.py
 ```
