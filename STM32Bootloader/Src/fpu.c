@@ -1,10 +1,3 @@
-/*
- * fpu.c
- *
- *  Created on: 25 Jul 2026
- *      Author: Senthil
- */
-
 
 #include "fpu.h"
 
