@@ -1,10 +1,3 @@
-/*
- * crc.c
- *
- *  Created on: 30 Jul 2026
- *      Author: Senthil
- */
-
 #include "crc.h"
 
 error_t crc_verify(uint8_t *data, uint8_t length, uint32_t received_crc)
