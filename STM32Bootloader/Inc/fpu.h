@@ -1,10 +1,3 @@
-/*
- * fpu.h
- *
- *  Created on: 25 Jul 2026
- *      Author: Senthil
- */
-
 #ifndef FPU_H_
 #define FPU_H_
 
