@@ -17,12 +17,16 @@ To enter the bootloader:
 
 The bootloader indicates it is active by turning **ON the onboard LED** and starts listening for UART commands from the host application.
 
+![Bootloader Mode](<WhatsApp Image 2026-08-03 at 12.43.24.jpeg>)
+
 If the **User Button is not pressed** during reset, the bootloader validates the user application and automatically jumps to the **Default Application**.
 
 ---
 ## Using the Host Application
 
 The Python host utility (`host_py.py`) provides a command-line interface for communicating with the bootloader over UART.
+
+![Python Host Application](image.png)
 
 ## Bootloader Commands
 
@@ -44,7 +48,10 @@ The Python host utility (`host_py.py`) provides a command-line interface for com
 
 ## Flashing a User Application
 
-To program a new firmware image:
+<video controls src="20260803-0756-43.1234396.mp4" title="Title"></video>
+
+
+To program and run a new firmware image:
 
 1. Build your application project.
 2. Copy the generated **`.bin`** file into the same directory as `host_py.py`.
@@ -54,15 +61,21 @@ To program a new firmware image:
 user_app.bin
 ```
 
-4. Run the Python host application.
+4. Enter **Bootloader Mode** by holding the **User Button** while pressing **Reset**.
+5. Run the Python host application.
 
 ```bash
 python host_py.py
 ```
 
-5. Select **BL_MEM_WRITE** from the menu.
-6. Enter the application start address (default: `0x08008000`).
-7. The host transfers the firmware over UART while the bootloader programs it into the internal Flash memory.
+6. Select **BL_MEM_WRITE** from the menu.
+7. Enter the application start address (default: `0x08008000`).
+8. The host transfers the firmware image over UART while the bootloader programs it into the internal Flash memory.
+9. After the programming is complete, select **BL_GO_TO_ADDR** from the menu.
+10. Enter the application start address (`0x08008000` by default).
+11. The bootloader validates the application, updates the Main Stack Pointer (MSP), deinitializes the bootloader peripherals, and transfers execution to the user application.
+
+> **Note:** Ensure that the application is linked to the same start address (e.g., `0x08008000`) specified during programming and execution. An incorrect address or linker configuration will prevent the application from starting correctly.
 
 ---
 
@@ -140,15 +153,6 @@ STM32-Bootloader
 ![Host](Documents/host_terminal.png)
 ```
 
----
-
-## Firmware Update Demo
-
-> *(Add GIF or video here)*
-
-```markdown
-![Firmware Update](Documents/firmware_update.gif)
-```
 
 ---
 
