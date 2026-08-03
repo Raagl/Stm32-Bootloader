@@ -1,10 +1,3 @@
-/*
- * error.h
- *
- *  Created on: 30 Jul 2026
- *      Author: Senthil
- */
-
 #ifndef ERROR_H_
 #define ERROR_H_
 
