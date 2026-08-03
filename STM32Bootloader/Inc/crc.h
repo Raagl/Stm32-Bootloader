@@ -1,10 +1,3 @@
-/*
- * crc.h
- *
- *  Created on: 30 Jul 2026
- *      Author: Senthil
- */
-
 #ifndef CRC_H_
 #define CRC_H_
 
