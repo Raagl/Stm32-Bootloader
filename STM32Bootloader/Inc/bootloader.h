@@ -1,10 +1,3 @@
-/*
- * bootloader.h
- *
- *  Created on: 31 Jul 2026
- *      Author: Senthil
- */
-
 #ifndef BOOTLOADER_H_
 #define BOOTLOADER_H_
 
