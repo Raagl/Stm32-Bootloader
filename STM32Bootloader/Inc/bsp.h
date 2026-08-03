@@ -1,10 +1,3 @@
-/*
- * bsp.h
- *
- *  Created on: 26 Jul 2026
- *      Author: Senthil
- */
-
 #ifndef BSP_H_
 #define BSP_H_
 
