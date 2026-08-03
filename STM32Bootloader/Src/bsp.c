@@ -1,11 +1,3 @@
-/*
- * bsp.c
- *
- *  Created on: 26 Jul 2026
- *      Author: Senthil
- */
-
-
 #include "bsp.h"
 #include "timebase.h"
 
